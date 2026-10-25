@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123a70">
+<title>Entrance Exam for All Classes</title>
+<style>
+:root{--navy:#123a70;--blue:#2168d8;--pale:#edf4ff;--ink:#17243a;--muted:#64748b;--green:#13834b;--line:#dbe4f0}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f4f7fc;color:var(--ink)}
+header{background:linear-gradient(125deg,#102b54,#2168d8);color:white;padding:24px 16px 30px}
+.wrap{max-width:980px;margin:auto}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:14px;background:#fff;color:var(--blue);display:grid;place-items:center;font-size:25px;font-weight:900}
+h1{font-size:clamp(22px,4vw,34px);margin:0;line-height:1.2}.tag{margin:9px 0 0;color:#e0ebff}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}nav button{border:1px solid #ffffff70;background:#ffffff16;color:white;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}nav button.active{background:white;color:var(--navy)}
+main{max-width:980px;margin:22px auto;padding:0 14px 40px}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:20px;margin-bottom:16px;box-shadow:0 5px 18px #123a7008}
+h2{font-size:21px;margin:0 0 8px}h3{font-size:16px;margin:0 0 8px}.muted{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 6px}input,select,textarea{width:100%;padding:12px;border:1px solid #cbd6e5;border-radius:10px;background:#fff;font:inherit;color:var(--ink)}textarea{min-height:80px;resize:vertical}
+button.primary,.secondary,.danger{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer;margin-top:12px}.primary{background:var(--blue);color:white}.secondary{background:var(--pale);color:var(--navy)}.danger{background:#fff0f0;color:#b42318}.primary:disabled{opacity:.5;cursor:not-allowed}
+.pill{display:inline-block;background:var(--pale);color:var(--navy);padding:5px 9px;border-radius:20px;font-size:12px;font-weight:800}
+.exam-card{border:1px solid var(--line);padding:16px;border-radius:13px}.exam-card p{color:var(--muted);font-size:14px}
+.hidden{display:none!important}.notice{padding:12px 14px;background:#fff8df;border:1px solid #f0df9d;border-radius:10px;color:#654f08;font-size:13px;margin-top:14px}
+.option{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;cursor:pointer}.option input{width:auto;margin-top:4px}.option:has(input:checked){border-color:var(--blue);background:var(--pale)}
+.topline{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.timer{font-weight:900;color:#b42318;background:#fff0f0;border-radius:9px;padding:8px 12px}
+footer{text-align:center;padding:20px;color:var(--muted);font-size:12px}
+hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+@media(max-width:520px){.card{padding:16px}nav button{flex:1;padding:10px 8px;font-size:13px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="brand"><div class="logo">E</div><div><h1>Entrance Exam for All Classes</h1><p class="tag">Learn • Practice • Achieve</p></div></div>
+ <nav>
+  <button class="active" data-tab="home">Home</button><button data-tab="tests">Take a Test</button><button data-tab="admin">Teacher / Admin</button>
+ </nav>
+</div></header>
+<main>
+<section id="home" class="tab">
+ <div class="card"><span class="pill">ONLINE PRACTICE PORTAL</span><h2 style="margin-top:12px">Welcome, students! 👋</h2><p>Choose your class and subject to practise multiple-choice questions. Your score will appear after you submit the test.</p><button class="primary" onclick="showTab('tests')">Explore Tests →</button>
+ <div class="notice"><b>Starter version:</b> This file is the first website design and practice-test demo. Student accounts, teacher-assigned passwords, and shared online result storage are not connected yet. We will set those up separately and securely.</div></div>
+ <div class="grid"><div class="exam-card"><h3>📚 Classes 1–12</h3><p>Choose a class to get started.</p></div><div class="exam-card"><h3>🧠 MCQ Practice</h3><p>Four options and instant score.</p></div><div class="exam-card"><h3>⏱️ Timed Tests</h3><p>Practice with a 20-minute timer.</p></div></div>
+</section>
+<section id="tests" class="tab hidden">
+ <div class="card"><h2>Choose your test</h2><p class="muted">The sample question set is only a demo. Your own questions can be added from Teacher / Admin on this device.</p>
+ <div class="grid"><div><label for="classSelect">Class / Level</label><select id="classSelect"><option value="">Select class</option><option>Class 1</option><option>Class 2</option><option>Class 3</option><option>Class 4</option><option>Class 5</option><option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option><option>General Entrance</option></select></div>
+ <div><label for="subjectSelect">Subject</label><select id="subjectSelect"><option value="">Select subject</option><option>Mathematics</option><option>Science</option><option>English</option><option>Hindi</option><option>Social Science</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>General Knowledge</option><option>Reasoning</option></select></div></div>
+ <button class="primary" id="startBtn">Start Practice Test</button></div>
+ <div id="quiz" class="card hidden"><div class="topline"><div><h2 id="quizTitle">Practice Test</h2><p class="muted" id="progress"></p></div><div class="timer" id="timer">20:00</div></div><hr><div id="questionArea"></div><div class="topline"><button class="secondary" id="prevBtn">← Previous</button><button class="primary" id="nextBtn">Next →</button><button class="primary hidden" id="submitBtn">Submit Test</button></div></div>
+ <div id="result" class="card hidden"></div>
+</section>
+<section id="admin" class="tab hidden">
+ <div class="card"><h2>Teacher / Admin: Add MCQs</h2><p class="muted">Add questions for practice on this browser. This starter version saves questions only on this device; it is not yet a shared admin system.</p>
+ <div class="grid"><div><label for="adminClass">Class / Level</label><select id="adminClass"><option>Class 1</option><option>Class 2</option><option>Class 3</option><option>Class 4</option><option>Class 5</option><option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option><option>General Entrance</option></select></div><div><label for="adminSubject">Subject</label><select id="adminSubject"><option>Mathematics</option><option>Science</option><option>English</option><option>Hindi</option><option>Social Science</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>General Knowledge</option><option>Reasoning</option></select></div></div>
+ <label for="qText">Question</label><textarea id="qText" placeholder="Type your MCQ question"></textarea>
+ <div class="grid"><div><label for="o0">Option A</label><input id="o0" placeholder="Option A"></div><div><label for="o1">Option B</label><input id="o1" placeholder="Option B"></div><div><label for="o2">Option C</label><input id="o2" placeholder="Option C"></div><div><label for="o3">Option D</label><input id="o3" placeholder="Option D"></div></div>
+ <label for="correct">Correct answer</label><select id="correct"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select>
+ <button class="primary" id="saveQ">Save Question</button><button class="secondary" id="showQs">Show Saved Questions</button><div id="adminMsg" class="muted" style="margin-top:12px"></div><div id="questionList"></div>
+ <div class="notice"><b>Important:</b> This is not a secure admin login. Do not enter real student data or passwords here. Before sending to students, we must connect secure sign-in and a protected database so everyone sees the same questions and results.</div>
+ </div>
+</section>
+</main><footer>Entrance Exam for All Classes • Starter website</footer>
+<script>
+const KEY='eeac_questions_v1';
+const sample=[
+ {cls:'Class 5',sub:'Mathematics',q:'What is 7 × 8?',opts:['54','56','64','48'],ans:1},
+ {cls:'Class 5',sub:'Science',q:'Which planet do we live on?',opts:['Mars','Venus','Earth','Jupiter'],ans:2},
+ {cls:'Class 10',sub:'Science',q:'What is the chemical symbol for oxygen?',opts:['Ox','O','Og','Oy'],ans:1},
+ {cls:'Class 11',sub:'Chemistry',q:'The atomic number of carbon is:',opts:['4','6','8','12'],ans:1},
+ {cls:'General Entrance',sub:'General Knowledge',q:'What is the capital of India?',opts:['Mumbai','New Delhi','Kolkata','Chennai'],ans:1}
+];
+function getQs(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return []}}
+function allQs(){return [...sample,...getQs()]}
+function showTab(name){document.querySelectorAll('.tab').forEach(x=>x.classList.add('hidden'));document.getElementById(name).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===name))}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+let activeQs=[],answers=[],at=0,seconds=1200,clock=null;
+const $=id=>document.getElementById(id);
+$('startBtn').onclick=()=>{let cls=$('classSelect').value,sub=$('subjectSelect').value;if(!cls||!sub){alert('Please select a class and subject first.');return}activeQs=allQs().filter(q=>q.cls===cls&&q.sub===sub);if(!activeQs.length){alert('There are no questions for this selection yet. Add questions in Teacher / Admin.');return}answers=Array(activeQs.length).fill(null);at=0;seconds=1200;$('result').classList.add('hidden');$('quiz').classList.remove('hidden');$('quizTitle').textContent=cls+' • '+sub;$('submitBtn').classList.add('hidden');$('nextBtn').classList.remove('hidden');$('prevBtn').classList.remove('hidden');renderQ();clearInterval(clock);clock=setInterval(()=>{seconds--;let m=String(Math.floor(seconds/60)).padStart(2,'0'),s=String(seconds%60).padStart(2,'0');$('timer').textContent=m+':'+s;if(seconds<=0){clearInterval(clock);finish()}},1000);$('quiz').scrollIntoView({behavior:'smooth'});};
+function renderQ(){let q=activeQs[at];$('progress').textContent='Question '+(at+1)+' of '+activeQs.length;$('questionArea').innerHTML='<h3>'+(at+1)+'. '+esc(q.q)+'</h3>'+q.opts.map((o,i)=>`<label class="option"><input type="radio" name="answer" value="${i}" ${answers[at]===i?'checked':''}><span><b>${'ABCD'[i]}.</b> ${esc(o)}</span></label>`).join('');document.querySelectorAll('input[name="answer"]').forEach(r=>r.onchange=()=>answers[at]=Number(r.value));$('prevBtn').disabled=at===0;$('nextBtn').classList.toggle('hidden',at===activeQs.length-1);$('submitBtn').classList.toggle('hidden',at!==activeQs.length-1)}
+$('prevBtn').onclick=()=>{if(at>0){at--;renderQ()}};$('nextBtn').onclick=()=>{if(at<activeQs.length-1){at++;renderQ()}};
+$('submitBtn').onclick=()=>{if(confirm('Submit your test now?'))finish()};
+function finish(){clearInterval(clock);let score=activeQs.reduce((n,q,i)=>n+(answers[i]===q.ans?1:0),0);$('quiz').classList.add('hidden');$('result').classList.remove('hidden');$('result').innerHTML=`<span class="pill">TEST COMPLETED</span><h2 style="margin-top:12px">Your result</h2><p style="font-size:26px;font-weight:900">${score} / ${activeQs.length}</p><p>You answered ${answers.filter(x=>x!==null).length} of ${activeQs.length} questions.</p><button class="primary" onclick="showReview()">Review Answers</button> <button class="secondary" onclick="showTab('tests')">Choose Another Test</button><div id="review"></div>`;$('result').scrollIntoView({behavior:'smooth'})}
+window.showReview=()=>{$('review').innerHTML='<hr>'+activeQs.map((q,i)=>`<div style="margin:14px 0"><b>${i+1}. ${esc(q.q)}</b><p class="muted">Your answer: ${answers[i]===null?'Not answered':esc(q.opts[answers[i]])}</p><p style="color:var(--green)">Correct answer: ${esc(q.opts[q.ans])}</p></div>`).join('')};
+$('saveQ').onclick=()=>{let q=$('qText').value.trim(),opts=[0,1,2,3].map(i=>$('o'+i).value.trim());if(!q||opts.some(x=>!x)){alert('Please fill in the question and all four options.');return}let arr=getQs();arr.push({cls:$('adminClass').value,sub:$('adminSubject').value,q,opts,ans:Number($('correct').value)});localStorage.setItem(KEY,JSON.stringify(arr));$('qText').value='';[0,1,2,3].forEach(i=>$('o'+i).value='');$('adminMsg').textContent='Question saved on this device. Total custom questions: '+arr.length;};
+$('showQs').onclick=()=>{let qs=getQs();$('questionList').innerHTML=qs.length?'<hr><h3>Saved questions on this device</h3>'+qs.map((q,i)=>`<div class="exam-card" style="margin-top:8px"><b>${i+1}. ${esc(q.q)}</b><p>${esc(q.cls)} • ${esc(q.sub)} • Correct: ${'ABCD'[q.ans]}</p><button class="danger" onclick="deleteQ(${i})">Delete</button></div>`).join(''):'<p class="muted">No custom questions saved yet.</p>'};
+window.deleteQ=i=>{let qs=getQs();qs.splice(i,1);localStorage.setItem(KEY,JSON.stringify(qs));$('showQs').click()};
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+</script>
+</body></html>
