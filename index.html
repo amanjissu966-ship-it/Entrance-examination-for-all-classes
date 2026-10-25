@@ -1,173 +1,227 @@
-<!DOCTYPE html>
+
+ 
+                <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#123a70">
-<title>Entrance Exam for All Classes</title>
+<title>Class 11 Chemistry | Ch-1 Basic Concepts Part 1 (20 MCQs)</title>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Great+Vibes&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#123a70;--blue:#2168d8;--pale:#edf4ff;--ink:#17243a;--muted:#64748b;--green:#13834b;--line:#dbe4f0}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f4f7fc;color:var(--ink)}
-header{background:linear-gradient(125deg,#102b54,#2168d8);color:white;padding:24px 16px 30px}
-.wrap{max-width:980px;margin:auto}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:14px;background:#fff;color:var(--blue);display:grid;place-items:center;font-size:25px;font-weight:900}
-h1{font-size:clamp(22px,4vw,34px);margin:0;line-height:1.2}.tag{margin:9px 0 0;color:#e0ebff}
-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}nav button{border:1px solid #ffffff70;background:#ffffff16;color:white;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}nav button.active{background:white;color:var(--navy)}
-main{max-width:980px;margin:22px auto;padding:0 14px 40px}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:20px;margin-bottom:16px;box-shadow:0 5px 18px #123a7008}
-h2{font-size:21px;margin:0 0 8px}h3{font-size:16px;margin:0 0 8px}.muted{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}
-label{display:block;font-weight:700;font-size:14px;margin:12px 0 6px}input,select,textarea{width:100%;padding:12px;border:1px solid #cbd6e5;border-radius:10px;background:#fff;font:inherit;color:var(--ink)}textarea{min-height:80px;resize:vertical}
-button.primary,.secondary,.danger{border:0;border-radius:10px;padding:12px 16px;font-weight:800;cursor:pointer;margin-top:12px}.primary{background:var(--blue);color:white}.secondary{background:var(--pale);color:var(--navy)}.danger{background:#fff0f0;color:#b42318}.primary:disabled{opacity:.5;cursor:not-allowed}
-.pill{display:inline-block;background:var(--pale);color:var(--navy);padding:5px 9px;border-radius:20px;font-size:12px;font-weight:800}
-.exam-card{border:1px solid var(--line);padding:16px;border-radius:13px}.exam-card p{color:var(--muted);font-size:14px}
-.hidden{display:none!important}.notice{padding:12px 14px;background:#fff8df;border:1px solid #f0df9d;border-radius:10px;color:#654f08;font-size:13px;margin-top:14px}
-.option{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin:8px 0;cursor:pointer}.option input{width:auto;margin-top:4px}.option:has(input:checked){border-color:var(--blue);background:var(--pale)}
-.topline{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.timer{font-weight:900;color:#b42318;background:#fff0f0;border-radius:9px;padding:8px 12px}
-footer{text-align:center;padding:20px;color:var(--muted);font-size:12px}
-hr{border:0;border-top:1px solid var(--line);margin:18px 0}
-@media(max-width:520px){.card{padding:16px}nav button{flex:1;padding:10px 8px;font-size:13px}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+html{scroll-behavior:smooth}
+body{background:#071a2e;min-height:100vh;padding:18px;overflow-x:hidden}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(95px);opacity:.4;z-index:0;animation:float 12s ease-in-out infinite;pointer-events:none}
+.orb1{width:430px;height:430px;background:#0ea5e9;top:-130px;left:-130px}
+.orb2{width:380px;height:380px;background:#06b6d4;bottom:-110px;right:-110px;animation-delay:-6s}
+.orb3{width:300px;height:300px;background:#22d3ee;top:42%;right:4%;animation-delay:-3s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(30px) scale(1.05)}}
+.container{position:relative;z-index:1;max-width:960px;margin:0 auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:24px;backdrop-filter:blur(14px);box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden}
+.header{background:linear-gradient(135deg,#0c4a6e,#0ea5e9 45%,#22d3ee);color:#fff;padding:28px 24px;text-align:center;position:relative;overflow:hidden}
+.header::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);animation:shine 4s infinite}
+@keyframes shine{0%{left:-60%}60%{left:120%}100%{left:120%}}
+.header .chem-icon{display:inline-block;font-size:2.2rem;margin-bottom:4px}
+.header h1{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:800}
+.header p{font-size:.9rem;opacity:.95;margin-top:6px}
+.badge-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px;position:relative;z-index:2}
+.hbadge{background:rgba(255,255,255,.18);backdrop-filter:blur(6px);padding:5px 14px;border-radius:50px;font-size:.75rem;font-weight:600;border:1px solid rgba(255,255,255,.25)}
+.section{padding:26px;animation:fadeUp .5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.section-title{text-align:center;margin-bottom:18px;font-size:1.35rem;font-weight:800;background:linear-gradient(90deg,#67e8f9,#22d3ee,#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border:none;padding:10px 22px;font-size:.93rem;border-radius:50px;cursor:pointer;font-weight:600;transition:.25s;margin:4px;box-shadow:0 6px 18px rgba(14,165,233,.4);font-family:'Poppins'}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(14,165,233,.55)}
+.btn-secondary{background:linear-gradient(135deg,#64748b,#94a3b8)}
+.btn-danger{background:linear-gradient(135deg,#b91c1c,#dc2626)}
+.btn-success{background:linear-gradient(135deg,#059669,#10b981)}
+.btn-info{background:linear-gradient(135deg,#0284c7,#0ea5e9)}
+.btn-download{background:linear-gradient(135deg,#d97706,#f59e0b)}
+.btn-whatsapp{background:linear-gradient(135deg,#128C7E,#25D366)}
+.btn-print{background:linear-gradient(135deg,#2980b9,#3498db)}
+.btn-copy{background:linear-gradient(135deg,#0284c7,#0ea5e9)}
+.btn-block{width:100%;margin-top:10px}.btn-sm{padding:6px 14px;font-size:.78rem}
+.form-group{margin-bottom:12px}
+.form-group label{display:block;margin-bottom:5px;font-weight:600;color:#bae6fd;font-size:.88rem}
+.form-group input,.form-group select{width:100%;padding:10px;border:2px solid rgba(255,255,255,.15);border-radius:10px;font-size:.93rem;background:rgba(255,255,255,.06);color:#e0f2fe;transition:.2s;font-family:'Poppins'}
+.form-group input:focus,.form-group select:focus{border-color:#22d3ee;outline:none;background:rgba(255,255,255,.1);box-shadow:0 0 0 4px rgba(34,211,238,.15)}
+.form-group select option{color:#1e293b}
+.hidden{display:none!important}.text-center{text-align:center}.mt-15{margin-top:15px}.mb-15{margin-bottom:15px}
+.role-selector{display:flex;justify-content:center;gap:18px;margin:24px 0;flex-wrap:wrap}
+.role-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);padding:26px 16px;border-radius:18px;text-align:center;cursor:pointer;transition:.3s;width:175px}
+.role-card:hover{transform:translateY(-7px);border-color:#22d3ee;box-shadow:0 16px 40px rgba(14,165,233,.35)}
+.role-card .ic{width:62px;height:62px;margin:0 auto 12px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;background:linear-gradient(135deg,#0369a1,#22d3ee);box-shadow:0 8px 20px rgba(14,165,233,.4)}
+.role-card:nth-child(2) .ic{background:linear-gradient(135deg,#06b6d4,#67e8f9)}
+.role-card:nth-child(3) .ic{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.role-card h3{color:#e0f2fe;font-size:1rem;margin-bottom:4px}
+.role-card p{color:#94a3b8;font-size:.78rem}
+.glass{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px}
+.dashboard-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px}
+.dashboard-header h2{color:#67e8f9;font-size:1.05rem;font-weight:800}
+.settings-box{background:rgba(34,211,238,.08);border:2px dashed rgba(34,211,238,.4);border-radius:16px;padding:14px;margin:12px 0;text-align:center}
+.settings-box h3{color:#a5f3fc;font-size:.95rem;margin-bottom:8px}
+.settings-box select{width:auto;padding:8px 14px;border-radius:8px;font-weight:700;color:#155e75;background:#fff;border:2px solid #22d3ee}
+.pdf-box{background:rgba(6,182,212,.06);border:2px dashed rgba(6,182,212,.35);border-radius:16px;padding:14px;margin:12px 0;text-align:center}
+.pdf-box h3{color:#a5f3fc;font-size:.95rem}
+.pdf-box label{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#94a3b8;cursor:pointer;margin:6px}
+.pdf-box input{width:17px;height:17px;accent-color:#0ea5e9}
+.student-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.86rem}
+.student-table th,.student-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.1);text-align:left;color:#e2e8f0}
+.student-table th{background:rgba(14,165,233,.3);color:#bae6fd;font-weight:700}
+.student-table tr:hover{background:rgba(14,165,233,.12)}
+h3.sub-h{color:#67e8f9;font-size:.95rem}
+.copy-box{background:rgba(255,255,255,.05);border:2px dashed rgba(255,255,255,.2);border-radius:16px;padding:15px;margin:14px 0;text-align:center}
+.copy-box h3{color:#a5f3fc}
+.copy-box pre{background:rgba(0,0,0,.3);color:#e2e8f0;padding:10px;border-radius:10px;font-size:.83rem;text-align:left;margin:10px 0;white-space:pre-wrap}
+.connection-status{text-align:center;padding:8px;font-size:.82rem;border-radius:50px;margin-bottom:14px;font-weight:600}
+.conn-online{background:rgba(16,185,129,.15);color:#4ade80}.conn-offline{background:rgba(239,68,68,.12);color:#fca5a5}.conn-warn{background:rgba(245,158,11,.15);color:#fbbf24}
+.timer-display{position:sticky;top:8px;z-index:60;background:rgba(7,26,46,.92);backdrop-filter:blur(8px);border:1px solid rgba(34,211,238,.4);color:#22d3ee;text-shadow:0 0 12px rgba(34,211,238,.6);padding:9px 22px;border-radius:50px;text-align:center;font-weight:700;font-size:1rem;margin-bottom:12px}
+.timer-display.low{border-color:rgba(239,68,68,.8);color:#ef4444;text-shadow:0 0 14px rgba(239,68,68,.9);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+.attempt-pill{display:inline-block;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.4);color:#a5f3fc;padding:6px 18px;border-radius:50px;font-weight:700;font-size:.85rem;margin-bottom:12px}
+.palette{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:6px 0 16px}
+.pchip{width:35px;height:35px;border-radius:10px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);font-weight:700;color:#94a3b8;cursor:pointer;font-size:.78rem;transition:.2s}
+.pchip:hover{transform:scale(1.12);border-color:#22d3ee}
+.pchip.done{background:linear-gradient(135deg,#0369a1,#22d3ee);border-color:#22d3ee;color:#fff;box-shadow:0 4px 12px rgba(14,165,233,.5)}
+.question-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-left:4px solid #22d3ee;border-radius:16px;padding:18px;margin-bottom:16px;transition:.25s}
+.question-card:hover{box-shadow:0 8px 28px rgba(14,165,233,.2);border-color:rgba(34,211,238,.4)}
+.q-badge{display:inline-flex;width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#0369a1,#22d3ee);color:#fff;align-items:center;justify-content:center;font-weight:800;margin-right:10px;flex-shrink:0}
+.q-cat{display:inline-block;font-size:.68rem;font-weight:700;padding:2px 10px;border-radius:50px;margin-left:8px}
+.cat-UNITS{color:#fde68a;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35)}
+.cat-LAWS{color:#bef264;background:rgba(132,204,22,.15);border:1px solid rgba(132,204,22,.35)}
+.cat-DALTON{color:#fda4af;background:rgba(244,63,94,.15);border:1px solid rgba(244,63,94,.35)}
+.cat-MASS{color:#c4b5fd;background:rgba(139,92,246,.2);border:1px solid rgba(139,92,246,.4)}
+.cat-MOLE{color:#a5f3fc;background:rgba(6,182,212,.15);border:1px solid rgba(6,182,212,.35)}
+.q-text{font-weight:600;color:#e0f2fe;display:flex;align-items:flex-start;line-height:1.55;flex-wrap:wrap}
+.options{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.option-label{display:flex;align-items:center;gap:10px;padding:11px 15px;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.12);border-radius:12px;cursor:pointer;transition:.2s;font-size:.92rem;color:#e2e8f0}
+.option-label:hover{border-color:#22d3ee;background:rgba(34,211,238,.1);transform:translateX(5px)}
+.option-label input{accent-color:#22d3ee;width:16px;height:16px}
+.option-label.selected{background:linear-gradient(135deg,#0369a1,#22d3ee);border-color:#22d3ee;color:#fff;box-shadow:0 6px 18px rgba(14,165,233,.45)}
+.score-ring{width:190px;height:190px;border-radius:50%;margin:20px auto;display:flex;align-items:center;justify-content:center;background:conic-gradient(#0ea5e9 0deg,rgba(255,255,255,.1) 0deg);transition:background 1.2s ease;box-shadow:0 14px 34px rgba(14,165,233,.4)}
+.score-ring-inner{width:148px;height:148px;border-radius:50%;background:#04141f;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#finalScore{color:#67e8f9;font-size:2.4rem;font-weight:800;text-shadow:0 0 16px rgba(103,232,249,.6)}
+#scorePct{color:#94a3b8;font-weight:600}
+.perf-msg{font-size:1.05rem;margin:12px auto;padding:12px 22px;border-radius:50px;font-weight:700;max-width:430px;text-align:center}
+.excellent{background:rgba(16,185,129,.15);color:#4ade80}.good{background:rgba(250,204,21,.12);color:#fde047}.average{background:rgba(249,115,22,.12);color:#fdba74}.needs-improvement{background:rgba(239,68,68,.12);color:#fca5a5}
+.review-container{max-height:60vh;overflow-y:auto;padding:5px}
+.review-question{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:15px;margin-bottom:12px;color:#e0f2fe}
+.review-question.correct{border-left:6px solid #10b981}
+.review-question.incorrect{border-left:6px solid #ef4444}
+.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.review-status{padding:4px 14px;border-radius:50px;font-weight:600;font-size:.8rem}
+.review-status.correct{background:rgba(16,185,129,.18);color:#4ade80}
+.review-status.incorrect{background:rgba(239,68,68,.18);color:#fca5a5}
+.review-answers{margin:10px 0;padding:11px;background:rgba(0,0,0,.25);border-radius:10px;font-size:.9rem}
+.rv-correct{color:#4ade80;font-weight:700}.rv-wrong{color:#f87171;font-weight:700}
+.explanation-box{background:rgba(14,165,233,.12);border-left:4px solid #22d3ee;padding:11px;border-radius:10px;margin-top:10px;font-size:.88rem}
+.explanation-box strong{color:#67e8f9;display:block;margin-bottom:4px}
+.certificate-wrapper{display:flex;justify-content:center;margin:15px 0;overflow:auto;padding:10px}
+.certificate{width:1056px;height:744px;background:#fff;border:20px solid #d4af37;padding:40px 60px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.certificate::before{content:"";position:absolute;top:12px;left:12px;right:12px;bottom:12px;border:3px solid #d4af37}
+.cert-photo{width:110px;height:110px;border-radius:50%;border:4px solid #d4af37;overflow:hidden;margin:15px auto 10px;background:#f8f9fa;display:flex;align-items:center;justify-content:center}
+.cert-photo img{width:100%;height:100%;object-fit:cover}
+.cert-title{font-family:'Playfair Display',serif;font-size:2.4rem;color:#1a202c;margin-bottom:5px;font-weight:700}
+.cert-day{font-size:1.3rem;color:#0c4a6e;font-weight:600;margin:5px 0;background:#e0f2fe;padding:5px 20px;border-radius:20px;display:inline-block}
+.cert-subtitle{color:#4a5568;font-size:1.1rem;margin-bottom:15px;font-style:italic}
+.cert-name{font-family:'Playfair Display',serif;font-size:2.6rem;color:#0369a1;font-weight:700;margin:5px 0;border-bottom:2px solid #cbd5e0;padding-bottom:8px}
+.cert-details{margin:12px 0;line-height:1.7;color:#2d3748;font-size:1rem}
+.cert-footer{display:flex;justify-content:space-between;width:100%;margin-top:30px;padding:0 50px}
+.signature-text{font-family:'Great Vibes',cursive;font-size:2.2rem;color:#0369a1}
+.signature-line{width:100%;border-top:2px solid #2d3748;margin:8px auto 6px}
+.signature-title{font-size:0.85rem;color:#718096}
+#qrcode{display:inline-block;padding:6px;background:#fff;border:1px solid #ddd;border-radius:8px}
+.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(7,26,46,.9);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:9999;color:#fff;font-size:1.1rem;flex-direction:column;gap:14px}
+.spinner{border:4px solid rgba(34,211,238,.25);border-top:4px solid #22d3ee;border-radius:50%;width:44px;height:44px;animation:spin 1s linear infinite}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.confetti{position:fixed;width:9px;height:9px;border-radius:2px;animation:fall linear forwards;z-index:9999}
+@keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
+@media (max-width:1100px){.certificate{transform:scale(0.55);transform-origin:top center;margin-bottom:-330px}}
+@media print{.no-print{display:none!important}.certificate{transform:none;width:100%;height:auto;margin:0}body{background:#fff}.bg-orb{display:none}.container{background:#fff;box-shadow:none}}
 </style>
 </head>
 <body>
-<header><div class="wrap">
- <div class="brand"><div class="logo">E</div><div><h1>Entrance Exam for All Classes</h1><p class="tag">Learn • Practice • Achieve</p></div></div>
- <nav>
-  <button class="active" data-tab="home">Home</button><button data-tab="tests">Take a Test</button><button data-tab="admin">Teacher / Admin</button>
- </nav>
-</div></header>
-<main>
-<section id="home" class="tab">
- <div class="card"><span class="pill">ONLINE PRACTICE PORTAL</span><h2 style="margin-top:12px">Welcome, students! 👋</h2><p>Choose your class and subject to practise multiple-choice questions. Your score will appear after you submit the test.</p><button class="primary" onclick="showTab('tests')">Explore Tests →</button>
- <div class="notice"><b>Starter version:</b> This file is the first website design and practice-test demo. Student accounts, teacher-assigned passwords, and shared online result storage are not connected yet. We will set those up separately and securely.</div></div>
- <div class="grid"><div class="exam-card"><h3>📚 Classes 1–12</h3><p>Choose a class to get started.</p></div><div class="exam-card"><h3>🧠 MCQ Practice</h3><p>Four options and instant score.</p></div><div class="exam-card"><h3>⏱️ Timed Tests</h3><p>Practice with a 20-minute timer.</p></div></div>
-</section>
-<section id="tests" class="tab hidden">
- <div class="card"><h2>Choose your test</h2><p class="muted">The sample question set is only a demo. Your own questions can be added from Teacher / Admin on this device.</p>
- <div class="grid"><div><label for="classSelect">Class / Level</label><select id="classSelect"><option value="">Select class</option><option>Class 1</option><option>Class 2</option><option>Class 3</option><option>Class 4</option><option>Class 5</option><option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option><option>General Entrance</option></select></div>
- <div><label for="subjectSelect">Subject</label><select id="subjectSelect"><option value="">Select subject</option><option>Mathematics</option><option>Science</option><option>English</option><option>Hindi</option><option>Social Science</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>General Knowledge</option><option>Reasoning</option></select></div></div>
- <button class="primary" id="startBtn">Start Practice Test</button></div>
- <div id="quiz" class="card hidden"><div class="topline"><div><h2 id="quizTitle">Practice Test</h2><p class="muted" id="progress"></p></div><div class="timer" id="timer">20:00</div></div><hr><div id="questionArea"></div><div class="topline"><button class="secondary" id="prevBtn">← Previous</button><button class="primary" id="nextBtn">Next →</button><button class="primary hidden" id="submitBtn">Submit Test</button></div></div>
- <div id="result" class="card hidden"></div>
-</section>
-<section id="admin" class="tab hidden">
- <div class="card"><h2>Teacher / Admin: Add MCQs</h2><p class="muted">Add questions for practice on this browser. This starter version saves questions only on this device; it is not yet a shared admin system.</p>
- <div class="grid"><div><label for="adminClass">Class / Level</label><select id="adminClass"><option>Class 1</option><option>Class 2</option><option>Class 3</option><option>Class 4</option><option>Class 5</option><option>Class 6</option><option>Class 7</option><option>Class 8</option><option>Class 9</option><option>Class 10</option><option>Class 11</option><option>Class 12</option><option>General Entrance</option></select></div><div><label for="adminSubject">Subject</label><select id="adminSubject"><option>Mathematics</option><option>Science</option><option>English</option><option>Hindi</option><option>Social Science</option><option>Physics</option><option>Chemistry</option><option>Biology</option><option>General Knowledge</option><option>Reasoning</option></select></div></div>
- <label for="qText">Question</label><textarea id="qText" placeholder="Type your MCQ question"></textarea>
- <div class="grid"><div><label for="o0">Option A</label><input id="o0" placeholder="Option A"></div><div><label for="o1">Option B</label><input id="o1" placeholder="Option B"></div><div><label for="o2">Option C</label><input id="o2" placeholder="Option C"></div><div><label for="o3">Option D</label><input id="o3" placeholder="Option D"></div></div>
- <label for="correct">Correct answer</label><select id="correct"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select>
- <button class="primary" id="saveQ">Save Question</button><button class="secondary" id="showQs">Show Saved Questions</button><div id="adminMsg" class="muted" style="margin-top:12px"></div><div id="questionList"></div>
- <div class="notice"><b>Important:</b> This is not a secure admin login. Do not enter real student data or passwords here. Before sending to students, we must connect secure sign-in and a protected database so everyone sees the same questions and results.</div>
- </div>
-</section>
-</main><footer>Entrance Exam for All Classes • Starter website</footer>
-<script>
-const KEY='eeac_questions_v1';
-const sample=[  {cls:'Class 11',sub:'Chemistry',q:'What is the maximum number of electrons in a shell with n = 3?',opts:['8','18','32','10'],ans:1},
-  {cls:'Class 11',sub:'Chemistry',q:'Which orbital is represented by quantum numbers n = 4 and l = 2?',opts:['4s','4p','4d','4f'],ans:2},
-  {cls:'Class 11',sub:'Chemistry',q:'Who discovered the neutron?',opts:['J.J. Thomson','Ernest Rutherford','James Chadwick','Niels Bohr'],ans:2},
-  {cls:'Class 11',sub:'Chemistry',q:'What is the shape of a p-orbital?',opts:['Spherical','Dumbbell','Double dumbbell','Complex'],ans:1},
-  {cls:'Class 11',sub:'Chemistry',q:'Which principle states that no two electrons can have all 4 quantum numbers same?',opts:['Aufbau Principle','Hund\'s Rule','Pauli Exclusion Principle','Heisenberg Principle'],ans:2},
-  {cls:'Class 11',sub:'Chemistry',q:'Which spectral series of hydrogen atom lies in the visible region?',opts:['Lyman series','Balmer series','Paschen series','Brackett series'],ans:1},
-  {cls:'Class 11',sub:'Chemistry',q:'What is the number of neutrons in Carbon-14 (6C14)?',opts:['6','8','12','14'],ans:1},
-  {cls:'Class 11',sub:'Chemistry',q:'What is the total number of orbitals in a shell with n = 3?',opts:['3','6','9','12'],ans:2},
-  {cls:'Class 11',sub:'Chemistry',q:'Cathode rays consist of a stream of which particles?',opts:['Protons','Neutrons','Electrons','Alpha particles'],ans:2},
-  {cls:'Class 11',sub:'Chemistry',q:'Who measured the charge on an electron using oil drop experiment?',opts:['J.J. Thomson','R.A. Millikan','James Chadwick','Ernest Rutherford'],ans:1},
-  {cls:'Class 11',sub:'Chemistry',q:'The atomic number of an element is equal to the number of which particle in a neutral atom?',opts:['Protons','Neutrons','Nucleons','Electrons only'],ans:0},
-  {cls:'Class 11',sub:'Chemistry',q:'Isotopes have the same number of protons but different number of which particles?',opts:['Electrons','Neutrons','Positrons','Photons'],ans:1},
-  {cls:'Class 11',sub:'Chemistry',q:'What is the wavelength of a moving particle related to its momentum by de Broglie equation?',opts:['lambda = h/p','lambda = p/h','lambda = h*p','lambda = h/m'],ans:0},
-  {cls:'Class 11',sub:'Chemistry',q:'According to Heisenberg\'s Uncertainty Principle, what cannot be determined simultaneously with absolute accuracy?',opts:['Mass and velocity','Position and momentum','Energy and time','Charge and mass'],ans:1},
-  {cls:'Class 11',sub:'Chemistry',q:'What is the maximum capacity of electrons in an f-subshell?',opts:['6','10','14','2'],ans:2},
-  {cls:'Class 11',sub:'Chemistry',q:'Which quantum number specifies the orientation of an orbital in space?',opts:['Principal quantum number','Azimuthal quantum number','Magnetic quantum number','Spin quantum number'],ans:2},
-  {cls:'Class 11',sub:'Chemistry',q:'What is the electronic configuration of Chromium (Cr, atomic number 24)?',opts:['[Ar] 3d4 4s2','[Ar] 3d5 4s1','[Ar] 3d6 4s0','[Ar] 3d4 4s1'],ans:1},
-  {cls:'Class 11',sub:'Chemistry',q:'Which rays were used in Rutherford\'s alpha-scattering experiment?',opts:['Beta rays','Gamma rays','He2+ ions (Alpha rays)','X-rays'],ans:2},
-  {cls:'Class 11',sub:'Chemistry',q:'What is the energy of a photon of light with frequency nu?',opts:['E = h*nu','E = h/nu','E = nu/h','E = h*lambda'],ans:0},
-  {cls:'Class 11',sub:'Chemistry',q:'Which subshell has l = 0?',opts:['s-subshell','p-subshell','d-subshell','f-subshell'],ans:0}
- // Quiz variables
-let currentQuestionIndex = 0;
-let score = 0;
-let timer;
-let timeLeft = 60; // 60 seconds timer
+<div class="bg-orb orb1"></div><div class="bg-orb orb2"></div><div class="bg-orb orb3"></div>
+<div class="container">
+<div class="header">
+<div class="chem-icon">⚗️</div>
+<h1>🧪 Class 11 Chemistry — Some Basic Concepts</h1>
+<p>Chapter 1 Part 1 • NCERT Based • 20 MCQs</p>
+<div class="badge-row">
+<span class="hbadge">📝 20 MCQs</span><span class="hbadge">⏱️ 20 mins</span>
+<span class="hbadge">🏷️ 5 Categories</span><span class="hbadge">🔢 Attempt Limit</span>
+<span class="hbadge">📜 Certificate</span><span class="hbadge">📴 Offline</span>
+</div>
+</div>
 
-// Start Quiz function
-function startQuiz() {
-    document.getElementById('start-container').style.display = 'none';
-    document.getElementById('quiz-container').style.display = 'block';
-    startTimer();
-    renderQuestion();
-}
+<div id="landingSection" class="section">
+<div id="connStatus" class="connection-status conn-offline">⏳ Connecting to Firebase...</div>
+<div id="offlineBox" class="copy-box hidden">
+<h3>⚠️ Firebase connect nahi ho raha?</h3>
+<p style="color:#94a3b8;font-size:.85rem;margin:8px 0">Check: (1) Chrome me kholein • (2) Internet on • (3) Firebase Rules test-mode</p>
+<button class="btn btn-info" onclick="location.reload()">🔄 Retry</button>
+<button class="btn btn-download" onclick="goOffline()">📴 Offline Mode</button>
+</div>
+<h2 class="section-title">Select Your Role</h2>
+<div class="role-selector">
+<div class="role-card" onclick="showSection('register')"><div class="ic">🎓</div><h3>Student Register</h3><p>Fill details first</p></div>
+<div class="role-card" onclick="showSection('login')"><div class="ic">🔐</div><h3>Student Login</h3><p>Enter password to start</p></div>
+<div class="role-card" onclick="showSection('teacherLogin')"><div class="ic">👨‍🏫</div><h3>Teacher Admin</h3><p>Manage test & attempts</p></div>
+</div>
+</div>
 
-// Timer function
-function startTimer() {
-    timer = setInterval(() => {
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            submitQuiz();
-        } else {
-            timeLeft--;
-            document.getElementById('timer').innerText = `Time Left: ${timeLeft}s`;
-        }
-    }, 1000);
-}
+<div id="registerSection" class="section hidden">
+<h2 class="section-title">📝 Student Registration</h2>
+<div class="glass" style="max-width:460px;margin:auto">
+<form id="regForm">
+<div class="form-group"><label>Full Name *</label><input type="text" id="regName" required></div>
+<div class="form-group"><label>School Name *</label><input type="text" id="regSchool" required></div>
+<div class="form-group"><label>WhatsApp Number *</label><input type="tel" id="regPhone" required></div>
+<div class="form-group"><label>Upload Photo (under 200KB)</label><input type="file" id="regPhoto" accept="image/*" required><div style="width:95px;height:95px;border-radius:50%;background:rgba(255,255,255,.06);margin:10px auto;display:flex;align-items:center;justify-content:center;border:2px dashed rgba(255,255,255,.25);overflow:hidden;color:#94a3b8" id="photoPreview">📷</div></div>
+<button type="submit" class="btn btn-block">✅ Submit Registration</button>
+<button type="button" class="btn btn-secondary btn-block" onclick="goHome()">← Back</button>
+</form>
+</div>
+<div id="copyBox" class="copy-box hidden"><h3>📋 Registration Sent!</h3><pre id="copyText"></pre><button class="btn btn-copy" onclick="copyToClipboard()">📋 Copy</button></div>
+</div>
 
-// Render Question function
-function renderQuestion() {
-    const q = sample[currentQuestionIndex];
-    const quizBox = document.getElementById('quiz-box');
-    quizBox.innerHTML = `
-        <h3>Q${currentQuestionIndex + 1}: ${q.q}</h3>
-        ${q.options.map((opt, i) => `
-            <label>
-                <input type="radio" name="question" value="${opt}"> ${opt}
-            </label><br>
-        `).join('')}
-    `;
-}
+<div id="loginSection" class="section hidden">
+<h2 class="section-title">🔐 Student Login</h2>
+<div class="glass" style="max-width:430px;margin:auto">
+<form id="loginForm">
+<div class="form-group"><label>Your Full Name *</label><input type="text" id="loginName" required></div>
+<div class="form-group"><label>Password (Given by Teacher) *</label><input type="password" id="loginPass" required></div>
+<button type="submit" class="btn btn-block">🚀 Start Test</button>
+<button type="button" class="btn btn-secondary btn-block" onclick="goHome()">← Back</button>
+</form>
+</div>
+</div>
 
-// Next / Submit Button logic
-function nextQuestion() {
-    const selected = document.querySelector('input[name="question"]:checked');
-    if (selected) {
-        if (selected.value === sample[currentQuestionIndex].ans) {
-            score += 2; // 2 marks for each correct answer
-        }
-    }
-    
-    currentQuestionIndex++;
-    if (currentQuestionIndex < sample.length) {
-        renderQuestion();
-    } else {
-        submitQuiz();
-    }
-}
+<div id="teacherLoginSection" class="section hidden">
+<h2 class="section-title">👨‍🏫 Teacher Login</h2>
+<div class="glass" style="max-width:430px;margin:auto">
+<form id="teacherLoginForm">
+<div class="form-group"><label>Teacher Password *</label><input type="password" id="teacherPassInput" required></div>
+<button type="submit" class="btn btn-block">🔓 Access Dashboard</button>
+<button type="button" class="btn btn-secondary btn-block" onclick="goHome()">← Back</button>
+</form>
+</div>
+</div>
 
-// Submit Quiz function
-function submitQuiz() {
-    clearInterval(timer);
-    document.getElementById('quiz-container').style.display = 'none';
-    const resultBox = document.getElementById('result-container');
-    resultBox.style.display = 'block';
-    resultBox.innerHTML = `<h2>Quiz Completed!</h2><p>Your Total Score: ${score} / ${sample.length * 2}</p>`;
- }
- 
- {cls:'Class 5',sub:'Mathematics',q:'What is 7 × 8?',opts:['54','56','64','48'],ans:1},
- {cls:'Class 5',sub:'Science',q:'Which planet do we live on?',opts:['Mars','Venus','Earth','Jupiter'],ans:2},
- {cls:'Class 10',sub:'Science',q:'What is the chemical symbol for oxygen?',opts:['Ox','O','Og','Oy'],ans:1},
- {cls:'Class 11',sub:'Chemistry',q:'The atomic number of carbon is:',opts:['4','6','8','12'],ans:1},
- {cls:'General Entrance',sub:'General Knowledge',q:'What is the capital of India?',opts:['Mumbai','New Delhi','Kolkata','Chennai'],ans:1}
-];
-function getQs(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return []}}
-function allQs(){return [...sample,...getQs()]}
-function showTab(name){document.querySelectorAll('.tab').forEach(x=>x.classList.add('hidden'));document.getElementById(name).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===name))}
-document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
-let activeQs=[],answers=[],at=0,seconds=1200,clock=null;
-const $=id=>document.getElementById(id);
-$('startBtn').onclick=()=>{let cls=$('classSelect').value,sub=$('subjectSelect').value;if(!cls||!sub){alert('Please select a class and subject first.');return}activeQs=allQs().filter(q=>q.cls===cls&&q.sub===sub);if(!activeQs.length){alert('There are no questions for this selection yet. Add questions in Teacher / Admin.');return}answers=Array(activeQs.length).fill(null);at=0;seconds=1200;$('result').classList.add('hidden');$('quiz').classList.remove('hidden');$('quizTitle').textContent=cls+' • '+sub;$('submitBtn').classList.add('hidden');$('nextBtn').classList.remove('hidden');$('prevBtn').classList.remove('hidden');renderQ();clearInterval(clock);clock=setInterval(()=>{seconds--;let m=String(Math.floor(seconds/60)).padStart(2,'0'),s=String(seconds%60).padStart(2,'0');$('timer').textContent=m+':'+s;if(seconds<=0){clearInterval(clock);finish()}},1000);$('quiz').scrollIntoView({behavior:'smooth'});};
-function renderQ(){let q=activeQs[at];$('progress').textContent='Question '+(at+1)+' of '+activeQs.length;$('questionArea').innerHTML='<h3>'+(at+1)+'. '+esc(q.q)+'</h3>'+q.opts.map((o,i)=>`<label class="option"><input type="radio" name="answer" value="${i}" ${answers[at]===i?'checked':''}><span><b>${'ABCD'[i]}.</b> ${esc(o)}</span></label>`).join('');document.querySelectorAll('input[name="answer"]').forEach(r=>r.onchange=()=>answers[at]=Number(r.value));$('prevBtn').disabled=at===0;$('nextBtn').classList.toggle('hidden',at===activeQs.length-1);$('submitBtn').classList.toggle('hidden',at!==activeQs.length-1)}
-$('prevBtn').onclick=()=>{if(at>0){at--;renderQ()}};$('nextBtn').onclick=()=>{if(at<activeQs.length-1){at++;renderQ()}};
-$('submitBtn').onclick=()=>{if(confirm('Submit your test now?'))finish()};
-function finish(){clearInterval(clock);let score=activeQs.reduce((n,q,i)=>n+(answers[i]===q.ans?1:0),0);$('quiz').classList.add('hidden');$('result').classList.remove('hidden');$('result').innerHTML=`<span class="pill">TEST COMPLETED</span><h2 style="margin-top:12px">Your result</h2><p style="font-size:26px;font-weight:900">${score} / ${activeQs.length}</p><p>You answered ${answers.filter(x=>x!==null).length} of ${activeQs.length} questions.</p><button class="primary" onclick="showReview()">Review Answers</button> <button class="secondary" onclick="showTab('tests')">Choose Another Test</button><div id="review"></div>`;$('result').scrollIntoView({behavior:'smooth'})}
-window.showReview=()=>{$('review').innerHTML='<hr>'+activeQs.map((q,i)=>`<div style="margin:14px 0"><b>${i+1}. ${esc(q.q)}</b><p class="muted">Your answer: ${answers[i]===null?'Not answered':esc(q.opts[answers[i]])}</p><p style="color:var(--green)">Correct answer: ${esc(q.opts[q.ans])}</p></div>`).join('')};
-$('saveQ').onclick=()=>{let q=$('qText').value.trim(),opts=[0,1,2,3].map(i=>$('o'+i).value.trim());if(!q||opts.some(x=>!x)){alert('Please fill in the question and all four options.');return}let arr=getQs();arr.push({cls:$('adminClass').value,sub:$('adminSubject').value,q,opts,ans:Number($('correct').value)});localStorage.setItem(KEY,JSON.stringify(arr));$('qText').value='';[0,1,2,3].forEach(i=>$('o'+i).value='');$('adminMsg').textContent='Question saved on this device. Total custom questions: '+arr.length;};
-$('showQs').onclick=()=>{let qs=getQs();$('questionList').innerHTML=qs.length?'<hr><h3>Saved questions on this device</h3>'+qs.map((q,i)=>`<div class="exam-card" style="margin-top:8px"><b>${i+1}. ${esc(q.q)}</b><p>${esc(q.cls)} • ${esc(q.sub)} • Correct: ${'ABCD'[q.ans]}</p><button class="danger" onclick="deleteQ(${i})">Delete</button></div>`).join(''):'<p class="muted">No custom questions saved yet.</p>'};
-window.deleteQ=i=>{let qs=getQs();qs.splice(i,1);localStorage.setItem(KEY,JSON.stringify(qs));$('showQs').click()};
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-</script>
-</body></html>
+<div id="dashboardSection" class="section hidden">
+<div class="dashboard-header"><h2>📊 TEACHER CONTROL PANEL</h2><div><button class="btn btn-secondary btn-sm" onclick="changeTeacherPass()">🔑 Change Password</button><button class="btn btn-danger btn-sm" onclick="goHome()">🚪 Logout</button></div></div>
+<div class="settings-box">
+<h3>🔢 Max Attempts per Student (एक बच्चा कितनी बार टेस्ट दे सकता है)</h3>
+<select id="maxAttemptsSel">
+<option value="1">1 Attempt</option><option value="2">2 Attempts</option><option value="3">3 Attempts</option>
+<option value="4">4 Attempts</option><option value="5">5 Attempts</option><option value="0">Unlimited (∞)</option>
+</select>
+<button class="btn btn-success btn-sm" onclick="saveMaxAttempts()">💾 Save</button>
+</div>
+<div class="pdf-box">
+<h3>📄 Download Test PDF (20 MCQs + OMR)</h3>
+<label><input type="checkbox" id="includeKey"> Include Answer Key</label><br>
+<butto
