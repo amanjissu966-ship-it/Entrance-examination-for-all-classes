@@ -60,7 +60,93 @@ hr{border:0;border-top:1px solid var(--line);margin:18px 0}
 </main><footer>Entrance Exam for All Classes • Starter website</footer>
 <script>
 const KEY='eeac_questions_v1';
-const sample=[
+const sample=[  {cls:'Class 11',sub:'Chemistry',q:'What is the maximum number of electrons in a shell with n = 3?',opts:['8','18','32','10'],ans:1},
+  {cls:'Class 11',sub:'Chemistry',q:'Which orbital is represented by quantum numbers n = 4 and l = 2?',opts:['4s','4p','4d','4f'],ans:2},
+  {cls:'Class 11',sub:'Chemistry',q:'Who discovered the neutron?',opts:['J.J. Thomson','Ernest Rutherford','James Chadwick','Niels Bohr'],ans:2},
+  {cls:'Class 11',sub:'Chemistry',q:'What is the shape of a p-orbital?',opts:['Spherical','Dumbbell','Double dumbbell','Complex'],ans:1},
+  {cls:'Class 11',sub:'Chemistry',q:'Which principle states that no two electrons can have all 4 quantum numbers same?',opts:['Aufbau Principle','Hund\'s Rule','Pauli Exclusion Principle','Heisenberg Principle'],ans:2},
+  {cls:'Class 11',sub:'Chemistry',q:'Which spectral series of hydrogen atom lies in the visible region?',opts:['Lyman series','Balmer series','Paschen series','Brackett series'],ans:1},
+  {cls:'Class 11',sub:'Chemistry',q:'What is the number of neutrons in Carbon-14 (6C14)?',opts:['6','8','12','14'],ans:1},
+  {cls:'Class 11',sub:'Chemistry',q:'What is the total number of orbitals in a shell with n = 3?',opts:['3','6','9','12'],ans:2},
+  {cls:'Class 11',sub:'Chemistry',q:'Cathode rays consist of a stream of which particles?',opts:['Protons','Neutrons','Electrons','Alpha particles'],ans:2},
+  {cls:'Class 11',sub:'Chemistry',q:'Who measured the charge on an electron using oil drop experiment?',opts:['J.J. Thomson','R.A. Millikan','James Chadwick','Ernest Rutherford'],ans:1},
+  {cls:'Class 11',sub:'Chemistry',q:'The atomic number of an element is equal to the number of which particle in a neutral atom?',opts:['Protons','Neutrons','Nucleons','Electrons only'],ans:0},
+  {cls:'Class 11',sub:'Chemistry',q:'Isotopes have the same number of protons but different number of which particles?',opts:['Electrons','Neutrons','Positrons','Photons'],ans:1},
+  {cls:'Class 11',sub:'Chemistry',q:'What is the wavelength of a moving particle related to its momentum by de Broglie equation?',opts:['lambda = h/p','lambda = p/h','lambda = h*p','lambda = h/m'],ans:0},
+  {cls:'Class 11',sub:'Chemistry',q:'According to Heisenberg\'s Uncertainty Principle, what cannot be determined simultaneously with absolute accuracy?',opts:['Mass and velocity','Position and momentum','Energy and time','Charge and mass'],ans:1},
+  {cls:'Class 11',sub:'Chemistry',q:'What is the maximum capacity of electrons in an f-subshell?',opts:['6','10','14','2'],ans:2},
+  {cls:'Class 11',sub:'Chemistry',q:'Which quantum number specifies the orientation of an orbital in space?',opts:['Principal quantum number','Azimuthal quantum number','Magnetic quantum number','Spin quantum number'],ans:2},
+  {cls:'Class 11',sub:'Chemistry',q:'What is the electronic configuration of Chromium (Cr, atomic number 24)?',opts:['[Ar] 3d4 4s2','[Ar] 3d5 4s1','[Ar] 3d6 4s0','[Ar] 3d4 4s1'],ans:1},
+  {cls:'Class 11',sub:'Chemistry',q:'Which rays were used in Rutherford\'s alpha-scattering experiment?',opts:['Beta rays','Gamma rays','He2+ ions (Alpha rays)','X-rays'],ans:2},
+  {cls:'Class 11',sub:'Chemistry',q:'What is the energy of a photon of light with frequency nu?',opts:['E = h*nu','E = h/nu','E = nu/h','E = h*lambda'],ans:0},
+  {cls:'Class 11',sub:'Chemistry',q:'Which subshell has l = 0?',opts:['s-subshell','p-subshell','d-subshell','f-subshell'],ans:0}
+ // Quiz variables
+let currentQuestionIndex = 0;
+let score = 0;
+let timer;
+let timeLeft = 60; // 60 seconds timer
+
+// Start Quiz function
+function startQuiz() {
+    document.getElementById('start-container').style.display = 'none';
+    document.getElementById('quiz-container').style.display = 'block';
+    startTimer();
+    renderQuestion();
+}
+
+// Timer function
+function startTimer() {
+    timer = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            submitQuiz();
+        } else {
+            timeLeft--;
+            document.getElementById('timer').innerText = `Time Left: ${timeLeft}s`;
+        }
+    }, 1000);
+}
+
+// Render Question function
+function renderQuestion() {
+    const q = sample[currentQuestionIndex];
+    const quizBox = document.getElementById('quiz-box');
+    quizBox.innerHTML = `
+        <h3>Q${currentQuestionIndex + 1}: ${q.q}</h3>
+        ${q.options.map((opt, i) => `
+            <label>
+                <input type="radio" name="question" value="${opt}"> ${opt}
+            </label><br>
+        `).join('')}
+    `;
+}
+
+// Next / Submit Button logic
+function nextQuestion() {
+    const selected = document.querySelector('input[name="question"]:checked');
+    if (selected) {
+        if (selected.value === sample[currentQuestionIndex].ans) {
+            score += 2; // 2 marks for each correct answer
+        }
+    }
+    
+    currentQuestionIndex++;
+    if (currentQuestionIndex < sample.length) {
+        renderQuestion();
+    } else {
+        submitQuiz();
+    }
+}
+
+// Submit Quiz function
+function submitQuiz() {
+    clearInterval(timer);
+    document.getElementById('quiz-container').style.display = 'none';
+    const resultBox = document.getElementById('result-container');
+    resultBox.style.display = 'block';
+    resultBox.innerHTML = `<h2>Quiz Completed!</h2><p>Your Total Score: ${score} / ${sample.length * 2}</p>`;
+ }
+ 
  {cls:'Class 5',sub:'Mathematics',q:'What is 7 × 8?',opts:['54','56','64','48'],ans:1},
  {cls:'Class 5',sub:'Science',q:'Which planet do we live on?',opts:['Mars','Venus','Earth','Jupiter'],ans:2},
  {cls:'Class 10',sub:'Science',q:'What is the chemical symbol for oxygen?',opts:['Ox','O','Og','Oy'],ans:1},
