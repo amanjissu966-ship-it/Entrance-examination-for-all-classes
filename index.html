@@ -1,239 +1,265 @@
-
- 
-                <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Class 11 Chemistry | Ch-1 Basic Concepts Part 1 (20 MCQs)</title>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Great+Vibes&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<title>Online MCQ Test</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-html{scroll-behavior:smooth}
-body{background:#071a2e;min-height:100vh;padding:18px;overflow-x:hidden}
-.bg-orb{position:fixed;border-radius:50%;filter:blur(95px);opacity:.4;z-index:0;animation:float 12s ease-in-out infinite;pointer-events:none}
-.orb1{width:430px;height:430px;background:#0ea5e9;top:-130px;left:-130px}
-.orb2{width:380px;height:380px;background:#06b6d4;bottom:-110px;right:-110px;animation-delay:-6s}
-.orb3{width:300px;height:300px;background:#22d3ee;top:42%;right:4%;animation-delay:-3s}
-@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(30px) scale(1.05)}}
-.container{position:relative;z-index:1;max-width:960px;margin:0 auto;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:24px;backdrop-filter:blur(14px);box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden}
-.header{background:linear-gradient(135deg,#0c4a6e,#0ea5e9 45%,#22d3ee);color:#fff;padding:28px 24px;text-align:center;position:relative;overflow:hidden}
-.header::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);animation:shine 4s infinite}
-@keyframes shine{0%{left:-60%}60%{left:120%}100%{left:120%}}
-.header .chem-icon{display:inline-block;font-size:2.2rem;margin-bottom:4px}
-.header h1{font-size:clamp(1.2rem,3vw,1.6rem);font-weight:800}
-.header p{font-size:.9rem;opacity:.95;margin-top:6px}
-.badge-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px;position:relative;z-index:2}
-.hbadge{background:rgba(255,255,255,.18);backdrop-filter:blur(6px);padding:5px 14px;border-radius:50px;font-size:.75rem;font-weight:600;border:1px solid rgba(255,255,255,.25)}
-.section{padding:26px;animation:fadeUp .5s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.section-title{text-align:center;margin-bottom:18px;font-size:1.35rem;font-weight:800;background:linear-gradient(90deg,#67e8f9,#22d3ee,#a5f3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.btn{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border:none;padding:10px 22px;font-size:.93rem;border-radius:50px;cursor:pointer;font-weight:600;transition:.25s;margin:4px;box-shadow:0 6px 18px rgba(14,165,233,.4);font-family:'Poppins'}
-.btn:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(14,165,233,.55)}
-.btn-secondary{background:linear-gradient(135deg,#64748b,#94a3b8)}
-.btn-danger{background:linear-gradient(135deg,#b91c1c,#dc2626)}
-.btn-success{background:linear-gradient(135deg,#059669,#10b981)}
-.btn-info{background:linear-gradient(135deg,#0284c7,#0ea5e9)}
-.btn-download{background:linear-gradient(135deg,#d97706,#f59e0b)}
-.btn-whatsapp{background:linear-gradient(135deg,#128C7E,#25D366)}
-.btn-print{background:linear-gradient(135deg,#2980b9,#3498db)}
-.btn-copy{background:linear-gradient(135deg,#0284c7,#0ea5e9)}
-.btn-block{width:100%;margin-top:10px}.btn-sm{padding:6px 14px;font-size:.78rem}
-.form-group{margin-bottom:12px}
-.form-group label{display:block;margin-bottom:5px;font-weight:600;color:#bae6fd;font-size:.88rem}
-.form-group input,.form-group select{width:100%;padding:10px;border:2px solid rgba(255,255,255,.15);border-radius:10px;font-size:.93rem;background:rgba(255,255,255,.06);color:#e0f2fe;transition:.2s;font-family:'Poppins'}
-.form-group input:focus,.form-group select:focus{border-color:#22d3ee;outline:none;background:rgba(255,255,255,.1);box-shadow:0 0 0 4px rgba(34,211,238,.15)}
-.form-group select option{color:#1e293b}
-.hidden{display:none!important}.text-center{text-align:center}.mt-15{margin-top:15px}.mb-15{margin-bottom:15px}
-.role-selector{display:flex;justify-content:center;gap:18px;margin:24px 0;flex-wrap:wrap}
-.role-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);padding:26px 16px;border-radius:18px;text-align:center;cursor:pointer;transition:.3s;width:175px}
-.role-card:hover{transform:translateY(-7px);border-color:#22d3ee;box-shadow:0 16px 40px rgba(14,165,233,.35)}
-.role-card .ic{width:62px;height:62px;margin:0 auto 12px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;background:linear-gradient(135deg,#0369a1,#22d3ee);box-shadow:0 8px 20px rgba(14,165,233,.4)}
-.role-card:nth-child(2) .ic{background:linear-gradient(135deg,#06b6d4,#67e8f9)}
-.role-card:nth-child(3) .ic{background:linear-gradient(135deg,#f59e0b,#ef4444)}
-.role-card h3{color:#e0f2fe;font-size:1rem;margin-bottom:4px}
-.role-card p{color:#94a3b8;font-size:.78rem}
-.glass{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px}
-.dashboard-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px}
-.dashboard-header h2{color:#67e8f9;font-size:1.05rem;font-weight:800}
-.settings-box{background:rgba(34,211,238,.08);border:2px dashed rgba(34,211,238,.4);border-radius:16px;padding:14px;margin:12px 0;text-align:center}
-.settings-box h3{color:#a5f3fc;font-size:.95rem;margin-bottom:8px}
-.settings-box select{width:auto;padding:8px 14px;border-radius:8px;font-weight:700;color:#155e75;background:#fff;border:2px solid #22d3ee}
-.pdf-box{background:rgba(6,182,212,.06);border:2px dashed rgba(6,182,212,.35);border-radius:16px;padding:14px;margin:12px 0;text-align:center}
-.pdf-box h3{color:#a5f3fc;font-size:.95rem}
-.pdf-box label{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#94a3b8;cursor:pointer;margin:6px}
-.pdf-box input{width:17px;height:17px;accent-color:#0ea5e9}
-.student-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.86rem}
-.student-table th,.student-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,.1);text-align:left;color:#e2e8f0}
-.student-table th{background:rgba(14,165,233,.3);color:#bae6fd;font-weight:700}
-.student-table tr:hover{background:rgba(14,165,233,.12)}
-h3.sub-h{color:#67e8f9;font-size:.95rem}
-.copy-box{background:rgba(255,255,255,.05);border:2px dashed rgba(255,255,255,.2);border-radius:16px;padding:15px;margin:14px 0;text-align:center}
-.copy-box h3{color:#a5f3fc}
-.copy-box pre{background:rgba(0,0,0,.3);color:#e2e8f0;padding:10px;border-radius:10px;font-size:.83rem;text-align:left;margin:10px 0;white-space:pre-wrap}
-.connection-status{text-align:center;padding:8px;font-size:.82rem;border-radius:50px;margin-bottom:14px;font-weight:600}
-.conn-online{background:rgba(16,185,129,.15);color:#4ade80}.conn-offline{background:rgba(239,68,68,.12);color:#fca5a5}.conn-warn{background:rgba(245,158,11,.15);color:#fbbf24}
-.timer-display{position:sticky;top:8px;z-index:60;background:rgba(7,26,46,.92);backdrop-filter:blur(8px);border:1px solid rgba(34,211,238,.4);color:#22d3ee;text-shadow:0 0 12px rgba(34,211,238,.6);padding:9px 22px;border-radius:50px;text-align:center;font-weight:700;font-size:1rem;margin-bottom:12px}
-.timer-display.low{border-color:rgba(239,68,68,.8);color:#ef4444;text-shadow:0 0 14px rgba(239,68,68,.9);animation:pulse 1s infinite}
-@keyframes pulse{50%{opacity:.65}}
-.attempt-pill{display:inline-block;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.4);color:#a5f3fc;padding:6px 18px;border-radius:50px;font-weight:700;font-size:.85rem;margin-bottom:12px}
-.palette{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:6px 0 16px}
-.pchip{width:35px;height:35px;border-radius:10px;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);font-weight:700;color:#94a3b8;cursor:pointer;font-size:.78rem;transition:.2s}
-.pchip:hover{transform:scale(1.12);border-color:#22d3ee}
-.pchip.done{background:linear-gradient(135deg,#0369a1,#22d3ee);border-color:#22d3ee;color:#fff;box-shadow:0 4px 12px rgba(14,165,233,.5)}
-.question-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-left:4px solid #22d3ee;border-radius:16px;padding:18px;margin-bottom:16px;transition:.25s}
-.question-card:hover{box-shadow:0 8px 28px rgba(14,165,233,.2);border-color:rgba(34,211,238,.4)}
-.q-badge{display:inline-flex;width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#0369a1,#22d3ee);color:#fff;align-items:center;justify-content:center;font-weight:800;margin-right:10px;flex-shrink:0}
-.q-cat{display:inline-block;font-size:.68rem;font-weight:700;padding:2px 10px;border-radius:50px;margin-left:8px}
-.cat-UNITS{color:#fde68a;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.35)}
-.cat-LAWS{color:#bef264;background:rgba(132,204,22,.15);border:1px solid rgba(132,204,22,.35)}
-.cat-DALTON{color:#fda4af;background:rgba(244,63,94,.15);border:1px solid rgba(244,63,94,.35)}
-.cat-MASS{color:#c4b5fd;background:rgba(139,92,246,.2);border:1px solid rgba(139,92,246,.4)}
-.cat-MOLE{color:#a5f3fc;background:rgba(6,182,212,.15);border:1px solid rgba(6,182,212,.35)}
-.q-text{font-weight:600;color:#e0f2fe;display:flex;align-items:flex-start;line-height:1.55;flex-wrap:wrap}
-.options{display:flex;flex-direction:column;gap:8px;margin-top:10px}
-.option-label{display:flex;align-items:center;gap:10px;padding:11px 15px;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.12);border-radius:12px;cursor:pointer;transition:.2s;font-size:.92rem;color:#e2e8f0}
-.option-label:hover{border-color:#22d3ee;background:rgba(34,211,238,.1);transform:translateX(5px)}
-.option-label input{accent-color:#22d3ee;width:16px;height:16px}
-.option-label.selected{background:linear-gradient(135deg,#0369a1,#22d3ee);border-color:#22d3ee;color:#fff;box-shadow:0 6px 18px rgba(14,165,233,.45)}
-.score-ring{width:190px;height:190px;border-radius:50%;margin:20px auto;display:flex;align-items:center;justify-content:center;background:conic-gradient(#0ea5e9 0deg,rgba(255,255,255,.1) 0deg);transition:background 1.2s ease;box-shadow:0 14px 34px rgba(14,165,233,.4)}
-.score-ring-inner{width:148px;height:148px;border-radius:50%;background:#04141f;display:flex;flex-direction:column;align-items:center;justify-content:center}
-#finalScore{color:#67e8f9;font-size:2.4rem;font-weight:800;text-shadow:0 0 16px rgba(103,232,249,.6)}
-#scorePct{color:#94a3b8;font-weight:600}
-.perf-msg{font-size:1.05rem;margin:12px auto;padding:12px 22px;border-radius:50px;font-weight:700;max-width:430px;text-align:center}
-.excellent{background:rgba(16,185,129,.15);color:#4ade80}.good{background:rgba(250,204,21,.12);color:#fde047}.average{background:rgba(249,115,22,.12);color:#fdba74}.needs-improvement{background:rgba(239,68,68,.12);color:#fca5a5}
-.review-container{max-height:60vh;overflow-y:auto;padding:5px}
-.review-question{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:15px;margin-bottom:12px;color:#e0f2fe}
-.review-question.correct{border-left:6px solid #10b981}
-.review-question.incorrect{border-left:6px solid #ef4444}
-.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
-.review-status{padding:4px 14px;border-radius:50px;font-weight:600;font-size:.8rem}
-.review-status.correct{background:rgba(16,185,129,.18);color:#4ade80}
-.review-status.incorrect{background:rgba(239,68,68,.18);color:#fca5a5}
-.review-answers{margin:10px 0;padding:11px;background:rgba(0,0,0,.25);border-radius:10px;font-size:.9rem}
-.rv-correct{color:#4ade80;font-weight:700}.rv-wrong{color:#f87171;font-weight:700}
-.explanation-box{background:rgba(14,165,233,.12);border-left:4px solid #22d3ee;padding:11px;border-radius:10px;margin-top:10px;font-size:.88rem}
-.explanation-box strong{color:#67e8f9;display:block;margin-bottom:4px}
-.certificate-wrapper{display:flex;justify-content:center;margin:15px 0;overflow:auto;padding:10px}
-.certificate{width:1056px;height:744px;background:#fff;border:20px solid #d4af37;padding:40px 60px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.certificate::before{content:"";position:absolute;top:12px;left:12px;right:12px;bottom:12px;border:3px solid #d4af37}
-.cert-photo{width:110px;height:110px;border-radius:50%;border:4px solid #d4af37;overflow:hidden;margin:15px auto 10px;background:#f8f9fa;display:flex;align-items:center;justify-content:center}
-.cert-photo img{width:100%;height:100%;object-fit:cover}
-.cert-title{font-family:'Playfair Display',serif;font-size:2.4rem;color:#1a202c;margin-bottom:5px;font-weight:700}
-.cert-day{font-size:1.3rem;color:#0c4a6e;font-weight:600;margin:5px 0;background:#e0f2fe;padding:5px 20px;border-radius:20px;display:inline-block}
-.cert-subtitle{color:#4a5568;font-size:1.1rem;margin-bottom:15px;font-style:italic}
-.cert-name{font-family:'Playfair Display',serif;font-size:2.6rem;color:#0369a1;font-weight:700;margin:5px 0;border-bottom:2px solid #cbd5e0;padding-bottom:8px}
-.cert-details{margin:12px 0;line-height:1.7;color:#2d3748;font-size:1rem}
-.cert-footer{display:flex;justify-content:space-between;width:100%;margin-top:30px;padding:0 50px}
-.signature-text{font-family:'Great Vibes',cursive;font-size:2.2rem;color:#0369a1}
-.signature-line{width:100%;border-top:2px solid #2d3748;margin:8px auto 6px}
-.signature-title{font-size:0.85rem;color:#718096}
-#qrcode{display:inline-block;padding:6px;background:#fff;border:1px solid #ddd;border-radius:8px}
-.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(7,26,46,.9);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:9999;color:#fff;font-size:1.1rem;flex-direction:column;gap:14px}
-.spinner{border:4px solid rgba(34,211,238,.25);border-top:4px solid #22d3ee;border-radius:50%;width:44px;height:44px;animation:spin 1s linear infinite}
-@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-.confetti{position:fixed;width:9px;height:9px;border-radius:2px;animation:fall linear forwards;z-index:9999}
-@keyframes fall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
-@media (max-width:1100px){.certificate{transform:scale(0.55);transform-origin:top center;margin-bottom:-330px}}
-@media print{.no-print{display:none!important}.certificate{transform:none;width:100%;height:auto;margin:0}body{background:#fff}.bg-orb{display:none}.container{background:#fff;box-shadow:none}}
-</style>// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); const database = getDatabase(app);
-apiKey: "AIzaSyAa-Gq-FmQB0JZ1PW19Nt2QmjHyoTA01So",
-authDomain: "class-11th-chemistry-some-basi.firebaseapp.com",
-projectId: "class-11th-chemistry-some-basi",
-storageBucket: "class-11th-chemistry-some-basi.firebasestorage.app",
-messagingSenderId: "98841584164",
-appId: "1:98841584164:web:3c27a55ac8b3b9df5eaeb1",
-measurementId: "G-4Y8VQF62N8"
-};
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  margin: 0;
+  padding: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+input, button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+button {
+  background: #2563eb;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#test, #dashboard { display: none; }
+</style>
 </head>
 <body>
-<div class="bg-orb orb1"></div><div class="bg-orb orb2"></div><div class="bg-orb orb3"></div>
+
 <div class="container">
-<div class="header">
-<div class="chem-icon">⚗️</div>
-<h1>🧪 Class 11 Chemistry — Some Basic Concepts</h1>
-<p>Chapter 1 Part 1 • NCERT Based • 20 MCQs</p>
-<div class="badge-row">
-<span class="hbadge">📝 20 MCQs</span><span class="hbadge">⏱️ 20 mins</span>
-<span class="hbadge">🏷️ 5 Categories</span><span class="hbadge">🔢 Attempt Limit</span>
-<span class="hbadge">📜 Certificate</span><span class="hbadge">📴 Offline</span>
-</div>
+  <h1>Online MCQ Test</h1>
+
+  <section id="auth">
+    <h2>Student Registration / Login</h2>
+    <input id="name" placeholder="Student Name (registration)">
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password (minimum 6 characters)">
+
+    <button id="registerBtn">Create Account</button>
+    <button id="loginBtn">Login</button>
+    <p id="message"></p>
+  </section>
+
+  <section id="dashboard">
+    <h2>Welcome, <span id="studentName">Student</span>!</h2>
+    <button id="startBtn">Start MCQ Test</button>
+    <button id="logoutBtn">Logout</button>
+    <p id="previousResult"></p>
+  </section>
+
+  <section id="test">
+    <h2>MCQ Test</h2>
+    <form id="quiz"></form>
+    <button id="submitBtn" type="button">Submit Test</button>
+    <p id="result"></p>
+  </section>
 </div>
 
-<div id="landingSection" class="section">
-<div id="connStatus" class="connection-status conn-offline">⏳ Connecting to Firebase...</div>
-<div id="offlineBox" class="copy-box hidden">
-<h3>⚠️ Firebase connect nahi ho raha?</h3>
-<p style="color:#94a3b8;font-size:.85rem;margin:8px 0">Check: (1) Chrome me kholein • (2) Internet on • (3) Firebase Rules test-mode</p>
-<button class="btn btn-info" onclick="location.reload()">🔄 Retry</button>
-<button class="btn btn-download" onclick="goOffline()">📴 Offline Mode</button>
-</div>
-<h2 class="section-title">Select Your Role</h2>
-<div class="role-selector">
-<div class="role-card" onclick="showSection('register')"><div class="ic">🎓</div><h3>Student Register</h3><p>Fill details first</p></div>
-<div class="role-card" onclick="showSection('login')"><div class="ic">🔐</div><h3>Student Login</h3><p>Enter password to start</p></div>
-<div class="role-card" onclick="showSection('teacherLogin')"><div class="ic">👨‍🏫</div><h3>Teacher Admin</h3><p>Manage test & attempts</p></div>
-</div>
-</div>
+<script type="module">
+import { initializeApp } from
+  "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 
-<div id="registerSection" class="section hidden">
-<h2 class="section-title">📝 Student Registration</h2>
-<div class="glass" style="max-width:460px;margin:auto">
-<form id="regForm">
-<div class="form-group"><label>Full Name *</label><input type="text" id="regName" required></div>
-<div class="form-group"><label>School Name *</label><input type="text" id="regSchool" required></div>
-<div class="form-group"><label>WhatsApp Number *</label><input type="tel" id="regPhone" required></div>
-<div class="form-group"><label>Upload Photo (under 200KB)</label><input type="file" id="regPhoto" accept="image/*" required><div style="width:95px;height:95px;border-radius:50%;background:rgba(255,255,255,.06);margin:10px auto;display:flex;align-items:center;justify-content:center;border:2px dashed rgba(255,255,255,.25);overflow:hidden;color:#94a3b8" id="photoPreview">📷</div></div>
-<button type="submit" class="btn btn-block">✅ Submit Registration</button>
-<button type="button" class="btn btn-secondary btn-block" onclick="goHome()">← Back</button>
-</form>
-</div>
-<div id="copyBox" class="copy-box hidden"><h3>📋 Registration Sent!</h3><pre id="copyText"></pre><button class="btn btn-copy" onclick="copyToClipboard()">📋 Copy</button></div>
-</div>
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
-<div id="loginSection" class="section hidden">
-<h2 class="section-title">🔐 Student Login</h2>
-<div class="glass" style="max-width:430px;margin:auto">
-<form id="loginForm">
-<div class="form-group"><label>Your Full Name *</label><input type="text" id="loginName" required></div>
-<div class="form-group"><label>Password (Given by Teacher) *</label><input type="password" id="loginPass" required></div>
-<button type="submit" class="btn btn-block">🚀 Start Test</button>
-<button type="button" class="btn btn-secondary btn-block" onclick="goHome()">← Back</button>
-</form>
-</div>
-</div>
+import {
+  getDatabase,
+  ref,
+  set,
+  get
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
-<div id="teacherLoginSection" class="section hidden">
-<h2 class="section-title">👨‍🏫 Teacher Login</h2>
-<div class="glass" style="max-width:430px;margin:auto">
-<form id="teacherLoginForm">
-<div class="form-group"><label>Teacher Password *</label><input type="password" id="teacherPassInput" required></div>
-<button type="submit" class="btn btn-block">🔓 Access Dashboard</button>
-<button type="button" class="btn btn-secondary btn-block" onclick="goHome()">← Back</button>
-</form>/
-const firebaseConfig = {https://class-11th-chemistry-some-basi-default-rtdb.firebaseio.com
+// अपने Firebase Console के असली Config से बदलें।
+const firebaseConfig = {
+  apiKey: "PASTE_YOUR_API_KEY",
+  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
+  databaseURL: "PASTE_YOUR_DATABASE_URL",
+  projectId: "PASTE_YOUR_PROJECT_ID",
+  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID",
+  appId: "PASTE_YOUR_APP_ID"
+};
 
-</div>
-</div>
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
 
-<div id="dashboardSection" class="section hidden">
-<div class="dashboard-header"><h2>📊 TEACHER CONTROL PANEL</h2><div><button class="btn btn-secondary btn-sm" onclick="changeTeacherPass()">🔑 Change Password</button><button class="btn btn-danger btn-sm" onclick="goHome()">🚪 Logout</button></div></div>
-<div class="settings-box">
-<h3>🔢 Max Attempts per Student (एक बच्चा कितनी बार टेस्ट दे सकता है)</h3>
-<select id="maxAttemptsSel">
-<option value="1">1 Attempt</option><option value="2">2 Attempts</option><option value="3">3 Attempts</option>
-<option value="4">4 Attempts</option><option value="5">5 Attempts</option><option value="0">Unlimited (∞)</option>
-</select>
-<button class="btn btn-success btn-sm" onclick="saveMaxAttempts()">💾 Save</button>
-</div>
-<div class="pdf-box">
-<h3>📄 Download Test PDF (20 MCQs + OMR)</h3>
-<label><input type="checkbox" id="includeKey"> Include Answer Key</label><br>
-<butto
+const $ = id => document.getElementById(id);
+
+const questions = [
+  {
+    q: "Which is a rational number?",
+    options: ["√2", "π", "3/4", "√3"],
+    answer: 2
+  },
+  {
+    q: "What is the value of 2³?",
+    options: ["4", "6", "8", "9"],
+    answer: 2
+  },
+  {
+    q: "The sum of angles of a triangle is:",
+    options: ["90°", "180°", "270°", "360°"],
+    answer: 1
+  }
+];
+
+let currentUser = null;
+
+function showMessage(text) {
+  $("message").textContent = text;
+}
+
+$("registerBtn").addEventListener("click", async () => {
+  const name = $("name").value.trim();
+  const email = $("email").value.trim();
+  const password = $("password").value;
+
+  if (!name || !email || password.length < 6) {
+    showMessage("Enter your name, email and a password of at least 6 characters.");
+    return;
+  }
+
+  try {
+    const credential = await createUserWithEmailAndPassword(
+      auth, email, password
+    );
+
+    await set(ref(db, "students/" + credential.user.uid), {
+      name,
+      email
+    });
+
+    showMessage("Registration successful!");
+  } catch (error) {
+    showMessage(error.message);
+  }
+});
+
+$("loginBtn").addEventListener("click", async () => {
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      $("email").value.trim(),
+      $("password").value
+    );
+    showMessage("Login successful!");
+  } catch (error) {
+    showMessage(error.message);
+  }
+});
+
+onAuthStateChanged(auth, async user => {
+  currentUser = user;
+
+  $("auth").style.display = user ? "none" : "block";
+  $("dashboard").style.display = user ? "block" : "none";
+  $("test").style.display = "none";
+
+  if (!user) return;
+
+  try {
+    const snapshot = await get(ref(db, "students/" + user.uid));
+    const student = snapshot.val();
+
+    $("studentName").textContent =
+      student?.name || user.email || "Student";
+
+    const resultSnapshot = await get(
+      ref(db, "results/" + user.uid)
+    );
+
+    const previous = resultSnapshot.val();
+
+    $("previousResult").textContent = previous
+      ? "Last saved score: " + previous.score + "/" + previous.total
+      : "No previous result yet.";
+  } catch (error) {
+    $("previousResult").textContent =
+      "Database error: " + error.message;
+  }
+});
+
+$("startBtn").addEventListener("click", () => {
+  $("test").style.display = "block";
+  $("result").textContent = "";
+
+  $("quiz").innerHTML = questions.map((question, index) => `
+    <fieldset style="margin:12px 0">
+      <legend>${index + 1}. ${question.q}</legend>
+      ${question.options.map((option, optionIndex) => `
+        <label style="display:block;padding:5px">
+          <input type="radio" name="q${index}" value="${optionIndex}"
+          style="width:auto">
+          ${option}
+        </label>
+      `).join("")}
+    </fieldset>
+  `).join("");
+});
+
+$("submitBtn").addEventListener("click", async () => {
+  if (!currentUser) {
+    $("result").textContent = "Please log in first.";
+    return;
+  }
+
+  let score = 0;
+
+  questions.forEach((question, index) => {
+    const selected = document.querySelector(
+      `input[name="q${index}"]:checked`
+    );
+
+    if (selected && Number(selected.value) === question.answer) {
+      score++;
+    }
+  });
+
+  $("result").textContent = `Your score: ${score}/${questions.length}`;
+
+  try {
+    await set(ref(db, "results/" + currentUser.uid), {
+      score,
+      total: questions.length,
+      submittedAt: Date.now()
+    });
+
+    $("previousResult").textContent =
+      `Last saved score: ${score}/${questions.length}`;
+
+    $("result").textContent += " | Result saved!";
+  } catch (error) {
+    $("result").textContent +=
+      " | Save failed: " + error.message;
+  }
+});
+
+$("logoutBtn").addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    alert(error.message);
+  }
+});
+</script>
+
+</body>
+</html>
+ 
+                
